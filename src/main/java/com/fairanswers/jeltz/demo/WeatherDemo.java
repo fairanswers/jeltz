@@ -98,7 +98,7 @@ public class WeatherDemo implements JeltzTask {
             String detailedForecast = firstPeriod.optString("detailedForecast", "");
 
             return "Weather for " + city + ", " + country + " (" + lat + "," + lon + "):" +
-            name + ": " + detailedForecast;
+                    name + ": " + detailedForecast;
 
         } catch (Exception e) {
             throw new RuntimeException("Error finding weather: " + e.getMessage());

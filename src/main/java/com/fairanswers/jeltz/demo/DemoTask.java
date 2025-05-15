@@ -9,7 +9,7 @@ import java.util.Set;
  * This task simulates a data processing operation with progress reporting.
  */
 public class DemoTask implements JeltzTask {
-    
+
     @Override
     public Set<String> names() {
         // The names of the task, used to identify it in the command line
@@ -26,7 +26,7 @@ public class DemoTask implements JeltzTask {
     }
 
     @Override
-    public Integer run(String [] args) {
+    public Integer run(String[] args) {
         print("This is the demo task.");
         print("Args inside the task are: " + String.join(", ", args));
         return 0;

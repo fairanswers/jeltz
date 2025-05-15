@@ -1,9 +1,12 @@
 package com.fairanswers.jeltz;
 
-import org.reflections.Reflections;
 import org.apache.commons.cli.*;
+import org.reflections.Reflections;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class JeltzTaskRunner {
@@ -34,7 +37,7 @@ public class JeltzTaskRunner {
         }
 
         Set<JeltzTask> tasks = getMatchingTasks(candidateClasses, commandLine);
-        if(tasks.isEmpty() ){
+        if (tasks.isEmpty()) {
             print("No tasks found matching: " + commandLine.getArgs()[0]);
             System.exit(1);
         }
