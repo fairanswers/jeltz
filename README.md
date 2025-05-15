@@ -108,7 +108,10 @@ Verbose can be turned on with the -v option on the command line between the clas
 java -cp target/<jar-name>-jar-with-dependencies.jar com.fairanswers.jeltz.JeltzTaskRunner -v hello
 ```
 
-The package name is used to find the task classes. By default, it is set to "com". You can change this by using the -p option on the command line between the class name and the task name. For example:
+To save time, we only scan the classpath for tasks in certain packages.  The packageName options is used to find the task classes that you create. By default, it is set to "com", whcih scans any classes that start with "com".
+
+If you want to change the package name, you can do so by using the -p option on the command line between the class name and the task name. For example:
+
 ```bash
 java -cp target/<jar-name>-jar-with-dependencies.jar com.fairanswers.jeltz.JeltzTaskRunner -p org.yourname hello
 ```
