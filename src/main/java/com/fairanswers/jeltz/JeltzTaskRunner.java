@@ -20,15 +20,15 @@ public class JeltzTaskRunner {
                 .longOpt("help")
                 .desc("print help")
                 .build();
+        Option verbose = Option.builder("v")
+                .longOpt("verbose")
+                .desc("print verbose output during scanning and execution")
+                .build();
         Option packages = Option.builder("p")
                 .longOpt("packages")
                 .hasArg()
                 .argName("pkg1,pkg2")
                 .desc("comma-separated package names")
-                .build();
-        Option verbose = Option.builder("v")
-                .longOpt("verbose")
-                .desc("verbose mode")
                 .build();
         Option execute = Option.builder("e")
                 .longOpt("execute")
@@ -68,7 +68,6 @@ public class JeltzTaskRunner {
             Logger.getLogger("org.reflections").setLevel(Level.WARNING);
         } catch (Exception ignored) {}
 
-        // ??? Why are we doing this???
         // Determine packages to scan
         List<String> pkgsToScan;
         if (line.hasOption("p") || line.hasOption("packages")) {
@@ -126,7 +125,7 @@ public class JeltzTaskRunner {
                 if (!matchesRequested) continue;
 
                 matched++;
-                System.out.println("Found task: " + className + " names=" + names + " -- " + desc);
+                if(verbose) System.out.println("Found task: " + className + " names=" + names + " -- " + desc);
 
                 if (execute) {
                     if (verbose) System.out.println("[verbose] Executing " + className);
@@ -138,7 +137,7 @@ public class JeltzTaskRunner {
                     }
                     if (verbose) System.out.println("[verbose] Completed " + className);
                 } else {
-                    System.out.println("(not executed; use -e/--execute to actually run tasks)");
+                    if(verbose) System.out.println("(not executed; use -e/--execute to actually run tasks)");
                 }
 
             } catch (NoSuchMethodException nsme) {
